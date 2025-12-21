@@ -113,12 +113,15 @@ draw_snake:
 draw_apple:
     mov dh, [apple_y]
     mov dl, [apple_x]
-    call set_cursor
-    mov ah, 0x0E
-    mov al, '@'
+    call set_cursor      
+    
+    mov ah, 0x09        
+    mov al, '@'       
+    mov bh, 0         
+    mov bl, 0x0C      
+    mov cx, 1          
     int 0x10
     ret
-
 spawn_apple:
     mov ah, 0x00
     int 0x1A

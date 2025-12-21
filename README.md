@@ -1,2 +1,7 @@
 # snake_nasm
-Simple Snake bootloading game using NASM x86
+Excellent bootloader snake ! Pour le compiler et le lancer : 
+```bash
+make run
+```
+
+Profitez bien de ce super jeu !!!
