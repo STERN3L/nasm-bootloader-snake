@@ -13,7 +13,7 @@ start:
     mov ax, 0x0003
     int 0x10
 
-    mov word [longueur], 3
+    mov word [snake_length], 3
     mov di, SNAKE_ARRAY
     mov word [di], 0x0C28
     mov word [di+2], 0x0C27
@@ -29,14 +29,14 @@ game_loop:
     call set_cursor
     mov si, message_score
     call print_string
-    mov ax, [longueur]
+    mov ax, [snake_length]
     sub ax, 3
     call print_number
 
     call draw_apple
     call draw_snake
     call handle_input
-    call deplacement_snake
+    call move_snake
     call check_collision
     call delay
     jmp game_loop
@@ -96,7 +96,7 @@ print_number:
     ret
 
 draw_snake:
-    mov cx, [longueur]
+    mov cx, [snake_length]
     mov si, SNAKE_ARRAY
 .loop:
     push cx
@@ -168,8 +168,8 @@ handle_input:
         mov byte [dir_y], 0
         ret
 
-deplacement_snake:
-    mov cx, [longueur]
+move_snake:
+    mov cx, [snake_length]
     dec cx
     mov si, SNAKE_ARRAY
     mov ax, cx
@@ -199,7 +199,7 @@ check_collision:
     jl .die
     cmp ah, 24
     jg .die
-    mov cx, [longueur]
+    mov cx, [snake_length]
     dec cx
     mov si, SNAKE_ARRAY
     add si, 2
@@ -212,7 +212,7 @@ check_collision:
     jne .ret
     cmp ah, [apple_y]
     jne .ret
-    inc word [longueur]
+    inc word [snake_length]
     call spawn_apple
 .ret:
     ret
@@ -231,7 +231,7 @@ delay:
     jl .wait
     ret
 
-longueur    dw 0
+snake_length    dw 0
 dir_x     db 0
 dir_y     db 0
 apple_x   db 0
