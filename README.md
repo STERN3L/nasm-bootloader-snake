@@ -1,4 +1,4 @@
-# snake_nasm
+# NASM Bootloader Snake
 
 > A complete **Snake** game that fits in a **512-byte boot sector**, written in 16-bit x86 assembly (NASM).
 
